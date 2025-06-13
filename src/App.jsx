@@ -13,7 +13,7 @@ export default function App() {
   <Routes>
     {/* صفحة تسجيل الدخول غير محمية */}
     <Route path="/login" element={<Login />} />
-
+    <Route path="/register" element={<Register />} />
     {/* باقي الصفحات محمية */}
     <Route
       path="/tasks"
