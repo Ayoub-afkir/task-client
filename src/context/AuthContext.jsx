@@ -27,7 +27,7 @@ export function AuthProvider({ children }) {
   }, []);
 
   const login = async (data) => {
-    await api.get('/sanctum/csrf-cookie'); // مهم جدا!
+    // await api.get('/sanctum/csrf-cookie'); // مهم جدا!
     await api.post('/login', data);
     await getUser();
   };
