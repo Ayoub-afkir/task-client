@@ -41,39 +41,47 @@ export default function Tasks() {
   }, []);
 
   return (
-    <div className="p-6 max-w-lg mx-auto">
-      <h1 className="text-2xl font-bold mb-4">Task List</h1>
-<Link
-  to="/add-task"
-  className="inline-block mb-4 bg-blue-600 text-white px-4 py-2 rounded"
->
-  + Add Task
-</Link>
-      {loading ? (
-        <p>Loading tasks...</p>
-      ) : tasks.length === 0 ? (
-        <p>No tasks found.</p>
-      ) : (
-        <ul className="space-y-2">
-          {tasks.map((task) => (
-            <li
-              key={task.id}
-              className="bg-white shadow p-3 rounded flex justify-between"
+   <div className="p-6 max-w-4xl mx-auto">
+  <h1 className="text-3xl font-bold mb-6 text-gray-800">📝 Task Notes</h1>
+
+  <Link
+    to="/add-task"
+    className="inline-block mb-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2 rounded-xl transition"
+  >
+    + Add Task
+  </Link>
+
+  {loading ? (
+    <p className="text-gray-500">Loading tasks...</p>
+  ) : tasks.length === 0 ? (
+    <p className="text-gray-500">No tasks found.</p>
+  ) : (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {tasks.map((task) => (
+        <div
+          key={task.id}
+          className="bg-white border border-gray-200 rounded-2xl shadow-sm p-4 flex flex-col justify-between hover:shadow-md transition"
+        >
+          <h2 className="text-lg font-semibold text-gray-800 mb-2">{task.title}</h2>
+
+          <div className="flex justify-end space-x-2 mt-auto">
+            <Link
+              to={`/tasks/${task.id}/edit`}
+              className="bg-yellow-400 hover:bg-yellow-500 text-white px-3 py-1 rounded text-sm"
             >
-              <span>{task.title}</span>
-              <button
-                onClick={() => deleteTask(task.id)}
-                className="bg-red-500 text-white px-2 py-1 rounded text-sm"
-              >Delete</button>
-             <Link
-  to={`/tasks/${task.id}/edit`}
-  className="bg-yellow-500 text-white px-2 py-1 rounded text-sm mr-2"
->Edit</Link>
-            
-            </li>
-          ))}
-        </ul>
-      )}
+              Edit
+            </Link>
+            <button
+              onClick={() => deleteTask(task.id)}
+              className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      ))}
     </div>
+  )}
+</div>
   );
 }
